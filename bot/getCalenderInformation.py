@@ -49,11 +49,11 @@ def get_schedule():
 
     #'Z' は UTC timeを示している
     current_time = datetime.datetime.utcnow().isoformat() + 'Z'
-    print('直近の10個のイベントを取得します。')
+    print('直近の3個のイベントを取得します。')
     events_result = m_service.events().list(
         calendarId   = 'primary',
         timeMin      = current_time,
-        maxResults   = 10,
+        maxResults   = 3,
         singleEvents = True,
         orderBy      = 'startTime'
         ).execute()

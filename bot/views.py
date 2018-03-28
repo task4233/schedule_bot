@@ -45,9 +45,10 @@ def callback(request):
 
 def reply_text(reply_token, text):
     reply = ""
-    if text.find('追加') > -1 or text.find('ついか') > -1:
-        m_data = 'd';
-    elif text.find('予定') > -1 or text.find('よてい') > -1:
+    #if text.find('追加') > -1 or text.find('ついか') > -1:
+     #   m_data = 'd';
+    #el
+    if text.find('予定') > -1 or text.find('よてい') > -1:
         m_data = get_schedule()
         if not m_data:
             reply = '直近のイベントが見つかりませんでした。'
@@ -55,7 +56,7 @@ def reply_text(reply_token, text):
             for i in m_data:
                 reply += '・{}\n{}'.format(i[0], i[1])
                 if i != m_data[-1]: reply += '\n\n'
-                else: reply += '\nがありますよ！\n頑張ってください！'
+                else: reply += '\n\nがありますよ！\n頑張ってください！'
     elif text == '言語ガチャ':
         reply = random.choice(load_data)
     else:
