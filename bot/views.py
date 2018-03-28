@@ -50,7 +50,7 @@ def reply_text(reply_token, text):
             reply = '直近のイベントが見つかりませんでした。'
         else:
             for i in m_data:
-                reply += '{}\n{}がありますよ！\n頑張ってください！'.format(i[0], i[1])
+                reply += '{}\n{}がありますよ！\n頑張ってください！\n'.format(i[0], i[1])
     elif text == '言語ガチャ':
         reply = random.choice(load_data)
     else:
