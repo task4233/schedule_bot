@@ -3,9 +3,12 @@
 import json
 import random
 import requests
+import sched
+import time
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from datetime import datetime
 
 from .load_data import load_data, load_access_token
 from .getCalenderInformation import get_schedule
@@ -50,8 +53,9 @@ def reply_text(reply_token, text):
             reply = '直近のイベントが見つかりませんでした。'
         else:
             for i in m_data:
-                reply += '{}\n{}がありますよ！\n頑張ってください！'.format(i[0], i[1])
+                reply += '・{}\n{}'.format(i[0], i[1])
                 if i != m_data[-1]: reply += '\n\n'
+                else: reply += 'がありますよ！\n頑張ってください！'
     elif text == '言語ガチャ':
         reply = random.choice(load_data)
     else:
@@ -67,5 +71,17 @@ def reply_text(reply_token, text):
     }
 
     # Lineにデータを送信
+    requests.post(REPLY_ENDPOINT, headers=HEADER, data=json.dumps(payload))
+    return reply
+
+def news():
+    m_data = get_today_schedule()
+    if not m_data:
+        reply = '直近のイベントが見つかりませんでした。'
+    else:
+        for i in m_data:
+            reply += '{}\n{}がありますよ！\n頑張ってください！'.format(i[0], i[1])
+            if i != m_data[-1]: reply += '\n\n'
+
     requests.post(REPLY_ENDPOINT, headers=HEADER, data=json.dumps(payload))
     return reply

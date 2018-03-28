@@ -35,7 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'arcane-wave-22234.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
