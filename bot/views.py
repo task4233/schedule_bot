@@ -55,7 +55,7 @@ def reply_text(reply_token, text):
             for i in m_data:
                 reply += '・{}\n{}'.format(i[0], i[1])
                 if i != m_data[-1]: reply += '\n\n'
-                else: reply += 'がありますよ！\n頑張ってください！'
+                else: reply += '\nがありますよ！\n頑張ってください！'
     elif text == '言語ガチャ':
         reply = random.choice(load_data)
     else:
