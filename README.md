@@ -1,2 +1,2 @@
 # schedule_bot
-Lineでgoogleかれんだを使おう
+Line Messaging API x Google Scheduler API
